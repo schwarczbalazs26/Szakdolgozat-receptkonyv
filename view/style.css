@@ -1,0 +1,70 @@
+:root {
+    --darkgreen: #5F6F52;
+    --lightgreen: #A9B388;
+    --cream: #FEFAE0;
+    --brown: #B99470;
+}
+
+@font-face {
+    font-family: menuFont;
+    src: url(AppetitePro-Medium-BF64cc5fc311b19.otf);
+}
+
+body {
+    background-color: rgb(20, 20, 20);
+    margin: 0px;
+}
+
+#menu-items:hover>.menu-item {
+    opacity: 0.4;
+}
+
+#menu-items:hover>.menu-item:hover {
+    opacity: 1;
+}
+
+#menu {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item {
+    position: relative;
+    color: var(--brown);
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-family: menuFont;
+    text-decoration: none;
+    display: block;
+    padding: clamp(0.25rem, 0.5vw, 1rem);
+    transition: opacity 200ms ease-out;
+    z-index: 1;
+}
+
+#menu-items {
+    margin-left: clamp(4rem, 20vw, 48rem);
+}
+
+#menu-background-image {
+    height: 100%;
+    width: 100%;
+
+    background-image: url(../images/spicesbackground.jpg);
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1px;
+    opacity: 0.3;
+    background-position: center 40%;
+    background-size: 103vmax;
+
+    transition: opacity 800ms ease-out,
+        background-size 800ms ease-out,
+        background-position 800ms ease-out;
+}
+
+#menu-items:hover~#menu-background-image {
+    background-size: 100vmax;
+    opacity: 0.2;
+}
