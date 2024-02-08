@@ -1,0 +1,39 @@
+:root {
+    --darkgreen: #5F6F52;
+    --lightgreen: #A9B388;
+    --cream: #FEFAE0;
+    --brown: #B99470;
+    --lime: #55d6aa;
+}
+
+body {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+}
+
+.height {
+    height: 15vh;
+}
+
+.search {
+    height: 50px;
+    position: relative;
+}
+
+.search input:focus {
+    border: solid 2px var(--darkgreen);
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+}
+.search button{
+    position: absolute;
+        top:0px;
+        right: 0px;
+        width: 80px;
+        background: blue;
+}
