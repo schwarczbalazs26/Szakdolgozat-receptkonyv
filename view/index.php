@@ -10,7 +10,7 @@
 
     <div id="menu">
         <div id="menu-items">
-            <a href="mainpage.html" class="menu-item">Kezdőlap</a>
+            <a href="mainpage.php" class="menu-item">Kezdőlap</a>
             <a href="/" class="menu-item">Receptek</a>
             <a href="/" class="menu-item">Kapcsolat</a>
         </div>

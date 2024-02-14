@@ -17,18 +17,34 @@
         <header>
             <div class="container">
                 <h1 class="logo"></h1>
-
                 <nav>
                     <ul>
                         <!--     <li><img src="" alt="Logó"></li> -->
                         <li><a href="#">Kezdőlap</a></li>
                         <li><a href="#">Receptek</a></li>
                         <li><a href="#">Rólunk</a></li>
-                        <li><a href="#">Bejelentkezés</a></li> <!-- Modal popup implementálása -->
+                        <li><a href="../userdata/register.php" id="loginButton">Bejelentkezés</a></li>
+                        <!-- Modal popup implementálása -->
                     </ul>
                 </nav>
             </div>
         </header>
+    </div>
+
+    <!-- Belépő modal -->
+    <div id="loginModal" class="modal">
+        <!-- Modal tartalma -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </div>
 
     <div class="container">
@@ -52,7 +68,8 @@
     <div class="container text-center my-3">
         <h2 class="font-weight-light">lorem ipsum</h2>
         <div class="row mx-auto my-auto">
-            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div id="recipeCarousel" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="10000"
+                data-bs-slide="3">
                 <div class="carousel-inner w-100" role="listbox">
                     <div class="carousel-item active">
                         <div class="col-md-4">
@@ -122,6 +139,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="carousel.js"></script>
+
 </body>
 
 </html>
