@@ -37,7 +37,7 @@ $('.carousel').on('slide.bs.carousel', function (e) {
 });
 
 $(document).ready(function () {
-  var interval = 3000000; // ms-ben megadva
+  var interval = 5000; // ms-ben megadva
   var timer;
 
   function startCarouselTimer() {
