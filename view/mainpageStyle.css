@@ -126,3 +126,20 @@ transform: translateX(0);
   width: 100%;
   height: 200px;
 }
+#navLoginButton {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 8px 24px;
+  background: none;
+  box-shadow: var(--lightgreen) inset;
+  color:var(--darkgreen);
+  text-decoration-line: none;
+  cursor: pointer;
+}
