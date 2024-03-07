@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="hu">
 
 <head>
@@ -21,79 +20,20 @@
             <div class="container">
                 <h1 class="logo"></h1>
                 <nav>
-                    <ul>
+                    <ul class="navbar">
                         <!--     <li><img src="" alt="Logó"></li> -->
                         <li class="nav-item"><a class="nav-link" href="index.php">Kezdőlap</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Receptek</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Rólunk</a></li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-link nav-link float-right btn-nav-login"
-                                data-toggle="modal" data-target="#loginModal" id="navLoginButton">Bejelentkezés</button>
+                                data-toggle="modal" data-target="#loginModal" id="navLoginButton" onclick="window.location.href = '../userdata/login.php';">Bejelentkezés</button>
                     </ul>
                 </nav>
             </div>
         </header>
     </div>
 
-
-    <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <ul class="nav nav-tabs" id="loginRegisterTabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="loginTab" href="#" onclick="switchToLogin()">
-                                <i class="fas fa-sign-in-alt"></i> Bejelentkezés
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="registerTab" href="#" onclick="switchToRegister()">
-                                <i class="fas fa-user-plus"></i> Regisztráció
-                            </a>
-                        </li>
-                    </ul>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="username">Felhasználónév:</label>
-                        <input type="text" class="form-control" id="username">
-                    </div>
-                    <div id="emailField" style="display: none;">
-                        <div class="form-group">
-                            <label for="email">Email cím:</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Jelszó:</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="password">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    onclick="togglePasswordVisibility()">
-                                    <i class="far fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="confirmPasswordField" style="display: none;">
-                        <div class="form-group">
-                            <label for="confirmPassword">Jelszó mégegyszer:</label>
-                            <input type="password" class="form-control" id="confirmPassword">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Mégse</button>
-                    <button type="button" class="btn btn-primary" id="loginButton">Bejelentkezés</button>
-                </div>
-            </div>
-        </div>
-    </div>       
 
     <div class="container">
 
@@ -105,9 +45,7 @@
                     <input type="text" class="form-control" placeholder="Keress receptekre!">
                     <button class="btn btn-primary">Keresés</button>
                 </div>
-
             </div>
-
         </div>
     </div>
 
@@ -187,8 +125,3 @@
         crossorigin="anonymous"></script>
     <script src="carousel.js"></script>
     <script src="login.js"></script>
-
-
-</body>
-
-</html>
