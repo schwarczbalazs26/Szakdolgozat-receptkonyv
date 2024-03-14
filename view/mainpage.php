@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kezdőlap</title>
+    <title>1001 Recept | Kezdőlap</title>
     <link rel="stylesheet" href="searchStyle.css">
     <link rel="stylesheet" href="mainpageStyle.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
@@ -24,7 +24,7 @@
                         <!--     <li><img src="" alt="Logó"></li> -->
                         <li class="nav-item"><a class="nav-link" href="index.php">Kezdőlap</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Receptek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Rólunk</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../about/aboutUs.php">Rólunk</a></li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-link nav-link float-right btn-nav-login"
                                 data-toggle="modal" data-target="#loginModal" id="navLoginButton" onclick="window.location.href = '../userdata/login.php';">Bejelentkezés</button>
@@ -51,7 +51,7 @@
 
 
     <div class="container text-center my-3">
-        <h2 class="font-weight-light">lorem ipsum</h2>
+        <h2 class="font-weight-light">imádom a sültkrumplit</h2>
         <div class="row mx-auto my-auto">
             <div id="recipeCarousel" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="10000"
                 data-bs-slide="3">
@@ -124,4 +124,3 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="carousel.js"></script>
-    <script src="login.js"></script>

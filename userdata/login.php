@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bejelentkezés</title>
+    <title>1001 Recept | Bejelentkezés</title>
     <link rel="stylesheet" href="loginStyle.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -26,12 +26,19 @@
             <button type="submit" class="btn">Belépés</button>
             <div class="register-link">
                 <p>Nincs még profilod? <a href="register.php">Regisztrálj!</a></p>
+                <p><a href="../view/mainpage.php">Vissza a főoldalra</a></p>
             </div>
+            <?php
+            session_start();
+            if (isset($_SESSION['error'])): ?>
+                <div style="color: red;">
+                    <?php echo $_SESSION['error'];
+                    ?>
+                </div>
+            <?php endif; ?>
         </form>
     </div>
 
 </body>
-
-
 
 </html>
