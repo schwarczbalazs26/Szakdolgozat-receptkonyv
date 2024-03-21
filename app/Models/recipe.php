@@ -26,4 +26,5 @@ class recipe extends Model
     public function allergens(){
         return $this->belongsToMany(Allergen::class, 'recipe_allergen_table', 'recipe_id', 'allergen_id');
     }
+
 }

@@ -9,6 +9,13 @@ class RecipeController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function show($id)
+     {
+         $recipe = Recipe::findOrFail($id);
+         return view('recipes.show', ['recipe' => $recipe]);
+     }
+
     public function index()
     {
         return view('recipes.index');   
@@ -22,13 +29,6 @@ class RecipeController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
