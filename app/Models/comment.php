@@ -12,6 +12,11 @@ class comment extends Model
     protected $guarded = [];
 
     public function user(){
-        return $this->belongsTo(User::class, 'username', 'username');
+        return $this->belongsTo(User::class);
     }
+
+    public function recipe(){
+        return $this->belongsTo(Recipe::class);
+    }
+
 }

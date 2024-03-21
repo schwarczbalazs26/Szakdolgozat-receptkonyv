@@ -15,7 +15,15 @@ class recipe extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
     public function ingredients(){
         return $this->belongsToMany(Ingredient::class, 'recipe_ingredient_table', 'recipe_id', 'ingredient_id');
+    }
+
+    public function allergens(){
+        return $this->belongsToMany(Allergen::class, 'recipe_allergen_table', 'recipe_id', 'allergen_id');
     }
 }
