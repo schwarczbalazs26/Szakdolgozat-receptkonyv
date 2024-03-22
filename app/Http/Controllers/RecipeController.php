@@ -3,22 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+   /**
+ * Display a listing of the resource.
+ */
+public function index(Request $request)
+{
+    $query = $request->input('search');
 
-     public function show($id)
-     {
-         $recipe = Recipe::findOrFail($id);
-         return view('recipes.show', ['recipe' => $recipe]);
-     }
+    $recipes = Recipe::query()
+        ->when($query, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        })
+        ->get();
 
-    public function index()
+    return view('recipes.index', compact('recipes'));
+}
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
     {
-        return view('recipes.index');   
+        $recipe = Recipe::findOrFail($id);
+        return view('recipes.show', ['recipe' => $recipe]);
     }
 
     /**
@@ -28,7 +42,6 @@ class RecipeController extends Controller
     {
         //
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -44,5 +57,19 @@ class RecipeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Search for recipes.
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $recipes = Recipe::query()
+            ->where('title', 'like', '%' . $query . '%')
+            ->get();
+
+        return response()->json($recipes);
     }
 }

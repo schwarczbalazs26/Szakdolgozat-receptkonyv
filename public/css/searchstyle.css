@@ -1,0 +1,33 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    position: relative; 
+}
+
+
+#searchInput {
+    width:auto;
+    max-width: 100%;
+}
+
+#searchDropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#searchDropdown.hidden {
+    display: none;
+}
+
+#searchDropdown h2 {
+    color:white;
+}
+#searchDropdown div:hover{
+    cursor:pointer;
+}
