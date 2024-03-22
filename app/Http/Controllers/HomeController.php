@@ -18,6 +18,6 @@ class HomeController extends Controller
 
     public function aboutus()
     {
-        return view('aboutus');
+        return view('aboutus.aboutus');
     }
 }
