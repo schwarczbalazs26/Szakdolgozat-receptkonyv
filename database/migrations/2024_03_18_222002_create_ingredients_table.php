@@ -13,13 +13,9 @@ return new class extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('recipe_id');
-            $table->string('name');
-            $table->enum('amount', ['mokkáskanál', 'kávéskanál', 'teáskanál', 'evőkanál', 'pohár', 'csésze', 'bögre', 'gerezd', 'g', 'dkg', 'kg', 'ml', 'dl', 'l']);
+            $table->string('name')->unique();
             $table->timestamps();
-
-            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
-        });
+        });        
     }
 
     /**

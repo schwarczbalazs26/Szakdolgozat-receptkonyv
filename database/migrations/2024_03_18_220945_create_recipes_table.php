@@ -16,8 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description');
-            $table->enum('difficulty', ['könnyű', 'haladó', 'közepes', 'nehéz', 'nagyon nehéz']);
-            $table->enum('prep_time', ['5-15 perc', '15-30 perc', '30-45 perc', '60+ perc']);
+            $table->enum('difficulty', ['beginner', 'novice', 'medium', 'hard', 'expert']);
+            $table->enum('prep_time', ['5-15 min', '15-30 min', '30-45 min', '60+ min']);
+            $table->text('instructions');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

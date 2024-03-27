@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <h1>Recipes</h1>
-                    <p>fasz 1</p>
+                    <p>teszt</p>
                 </div>
             </div>
         </div>
