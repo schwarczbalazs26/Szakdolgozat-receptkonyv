@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('allergens', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('recipe_id');
             $table->string('name');
             $table->timestamps();
 
-            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
         });
     }
 
