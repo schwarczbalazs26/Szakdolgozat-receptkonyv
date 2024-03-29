@@ -4,27 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use App\Models\Allergen;
+use Illuminate\Support\Facades\Config;
 
 class RecipeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-   /**
- * Display a listing of the resource.
- */
-public function index(Request $request)
-{
-    $query = $request->input('search');
+    public function index(Request $request)
+    {
+        $query = $request->input('search');
 
-    $recipes = Recipe::query()
-        ->when($query, function ($query, $search) {
-            return $query->where('title', 'like', '%' . $search . '%');
-        })
-        ->get();
-
-    return view('recipes.index', compact('recipes'));
-}
+        if ($query) {
+            return $this->searchRecipes($query);
+        } else {
+            return $this->filterRecipes($request);
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -62,14 +59,50 @@ public function index(Request $request)
     /**
      * Search for recipes.
      */
-    public function search(Request $request)
+    public function searchRecipes($query)
     {
-        $query = $request->input('query');
-
         $recipes = Recipe::query()
             ->where('title', 'like', '%' . $query . '%')
-            ->get();
+            ->orderBy('id', 'desc')
+            ->paginate(9);
 
-        return response()->json($recipes);
+        $allergens = Allergen::all();
+        $prep_time = Config::get('enums.prep_time');
+        $difficulty = Config::get('enums.difficulty');
+
+        return view('recipes.index', compact('recipes', 'allergens', 'difficulty', 'prep_time'));
+    }
+
+    /**
+     * Filter recipes based on request parameters.
+     */
+    public function filterRecipes(Request $request)
+    {
+        $allergens = Allergen::all();
+        $difficulties = Config::get('enums.difficulty');
+        $recipes = Recipe::orderBy('id', 'desc')->paginate(9);
+
+        $selectedAllergens = $request->input('allergens', []);
+        $selectedDifficulties = $request->input('difficulties', []);
+
+        $filteredRecipes = Recipe::query()
+            ->when(count($selectedAllergens) > 0, function ($query) use ($selectedAllergens) {
+                $query->whereHas('allergens', function ($q) use ($selectedAllergens) {
+                    $q->whereIn('id', $selectedAllergens);
+                });
+            })
+            ->when(count($selectedDifficulties) > 0, function ($query) use ($selectedDifficulties) {
+                $query->whereIn('difficulty', $selectedDifficulties);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(9);
+
+        return view('recipes.index', [
+            'recipes' => $recipes,
+            'filteredRecipes' => $filteredRecipes,
+            'allergens' => $allergens,
+            'difficulties' => $difficulties,
+            'lastPage' => $filteredRecipes->lastPage(),
+        ]);
     }
 }

@@ -9,6 +9,8 @@ Route::get('/aboutus', 'App\Http\Controllers\HomeController@aboutus')->name('abo
 Route::get('/recipes', 'App\Http\Controllers\RecipeController@index')->name('recipes.index');
 Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('recipe.show');
 Route::get('/search', [RecipeController::class, 'search']);
+Route::post('/search', [RecipeController::class, 'search']);
+Route::post('/recipes/index', [RecipeController::class, 'filterRecipes'])->name('recipes.filter');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

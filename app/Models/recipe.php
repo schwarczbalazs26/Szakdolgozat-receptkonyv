@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class recipe extends Model
 {
@@ -27,7 +28,5 @@ class recipe extends Model
     public function allergens(){
         return $this->belongsToMany(Allergen::class, 'recipe_allergen_table', 'recipe_id', 'allergen_id');
     }
-
-
 
 }
