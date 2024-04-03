@@ -9,10 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Retrieve 6 random recipes
+        
         $randomRecipes = Recipe::inRandomOrder()->limit(6)->get();
 
-        // Pass random recipes to the view
+        
         return view('index', ['randomRecipes' => $randomRecipes]);   
     }
 
@@ -20,4 +20,5 @@ class HomeController extends Controller
     {
         return view('aboutus.aboutus');
     }
+
 }

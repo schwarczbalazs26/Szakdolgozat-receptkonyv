@@ -7,7 +7,7 @@
 
                 <div class="mb-6">
                     <img src="{{ asset('storage/' . $recipe->id . '.png') }}" alt="{{ $recipe->title }}"
-                        class="w-full max-w-full h-auto mb-4" style="width: 400px; height: 400px;">
+                        class="w-full max-w-full h-auto mb-4" style="width: 600px; height: 400px;">
 
                     <div class="border-t border-b border-gray-300 rounded-lg p-4 recipe-details text-white"
                         style="background-color: #fififi;">
@@ -57,5 +57,5 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('allergens.js') }}"></script>
 </x-app-layout>
+<script src="{{ asset('allergens.js') }}"></script>

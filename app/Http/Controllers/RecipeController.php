@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Config;
 
 class RecipeController extends Controller
 {
+
+    public function showUploadForm()
+    {
+        if (auth()->check()) {
+            return view('recipeupload.recipeupload');
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -105,4 +115,14 @@ class RecipeController extends Controller
             'lastPage' => $filteredRecipes->lastPage(),
         ]);
     }
+
+    public function recipeUploadIndex()
+    {
+        $allergens = Allergen::all();
+        $prep_time = Config::get('enums.prep_time');
+        $difficulty = Config::get('enums.difficulty');
+
+        return view('recipeupload.recipeupload', compact('allergens', 'prep_time', 'difficulty'));
+    }
+
 }

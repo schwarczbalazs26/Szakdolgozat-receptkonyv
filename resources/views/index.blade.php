@@ -1,4 +1,4 @@
-<x-app-layout class="mb-6">
+<x-app-layout>
     <br>
 
     <div class="search-container flex justify-center mb-6">

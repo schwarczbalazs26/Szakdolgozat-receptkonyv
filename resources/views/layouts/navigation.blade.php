@@ -21,6 +21,9 @@
                 <x-nav-link :href="route('aboutus')" :active="request()->routeIs('aboutus')">
                     {{ __('About Us') }}
                 </x-nav-link>
+                <x-nav-link :href="route('recipeupload.index')" :active="request()->routeIs('recipeupload.index')">
+                    {{ __('Upload a Recipe') }}
+                </x-nav-link>
                 </div>
             </div>
 
@@ -92,6 +95,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('aboutus')" :active="request()->routeIs('aboutus')">
                     {{ __('About Us') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('recipeupload.index')" :active="request()->routeIs('recipeupload.index')">
+                    {{ __('Upload a Recipe') }}
                 </x-responsive-nav-link>
         </div>
 

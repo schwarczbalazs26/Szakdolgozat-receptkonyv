@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         debounceTimer = setTimeout(function() {
             const query = searchInput.value.trim();
             fetchSearchResults(query);
-        }, 300); // késleltetési idő  
+        }, 300);
     });
 
     
