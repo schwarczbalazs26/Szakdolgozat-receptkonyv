@@ -48,7 +48,6 @@
                     </div>
                 </div>
             </section>
-
             <section class="about-section brown-black">
                 <div class="about-content">
                     <div class="flex-container">
