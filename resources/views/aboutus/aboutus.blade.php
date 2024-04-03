@@ -40,7 +40,6 @@
                     </div>
                 </div>
             </section>
-            <!-- New horizontal flex container for the form card -->
             <section class="about-section brown-black">
                 <div class="about-content">
                     <div class="flex-container">
