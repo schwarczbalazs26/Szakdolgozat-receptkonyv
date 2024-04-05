@@ -6,7 +6,6 @@
         <div id="searchDropdown" class="mt-1 rounded-md bg-white shadow-lg hidden">
         </div>
     </div>
-
     
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-3 gap-8" id="recipeContainer">

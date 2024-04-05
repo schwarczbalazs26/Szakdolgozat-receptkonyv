@@ -4,7 +4,7 @@
         <div class="flex justify-between">
             <div class="max-w-md overflow-hidden rounded-lg border border-gray-200 shadow-lg text-gray-700"
                 style="max-height: 845px;">
-                <form id="filterForm" action="{{ route('recipes.index') }}" method="GET"
+                <form id="filterForm" action="{{ route('recipes.index') }}" method="GET" 
                     class="flex flex-col border-t border-gray-200 lg:border-t-0">
                     <fieldset class="w-full">
                         <legend class="block w-full bg-gray-50 px-5 py-3 text-xs font-medium text-white"

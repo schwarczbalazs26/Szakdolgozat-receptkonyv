@@ -11,7 +11,8 @@ Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('recipe.show
 Route::get('/search', [RecipeController::class, 'search']);
 Route::post('/search', [RecipeController::class, 'search']);
 Route::post('/recipes/index', [RecipeController::class, 'filterRecipes'])->name('recipes.filter');
-Route::get('/recipeupload/index', [RecipeController::class, 'showUploadForm'])->name('recipeupload.index')->middleware('auth');
+Route::get('/recipeupload/recipeupload', [RecipeController::class, 'showUploadForm'])->name('recipeupload.index')->middleware('auth');
+Route::post('/recipeupload/recipeupload', [RecipeController::class, 'store'])->name('recipes.store')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

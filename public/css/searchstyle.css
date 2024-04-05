@@ -19,6 +19,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     max-height: 200px;
     overflow-y: auto;
+    width:15em;
 }
 
 #searchDropdown.hidden {

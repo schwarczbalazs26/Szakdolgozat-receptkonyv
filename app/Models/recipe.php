@@ -11,6 +11,7 @@ class recipe extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $table = 'recipes';
 
     public function user(){
         return $this->belongsTo(User::class);
