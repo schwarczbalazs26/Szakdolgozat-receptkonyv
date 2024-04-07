@@ -13,7 +13,7 @@
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md">
                     <div class="p-6 flex flex-col justify-between">
                         <div class="text-center">
-                            <img src="{{ asset('storage/' . $recipe->id . '.png') }}" alt="{{ $recipe->title }}" class="mx-auto mb-4" style="width: 300px; height: 200px;">
+                            <img src="{{ asset('storage/' . $recipe->filename) }}" alt="{{ $recipe->title }}" class="mx-auto mb-4" style="width: 300px; height: 300px;">
                             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">{{ $recipe->title }}</h2>
                             <p class="text-gray-600 dark:text-gray-300 mb-4">{{ $recipe->description }}</p>
                         </div>

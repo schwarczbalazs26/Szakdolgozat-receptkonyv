@@ -69,46 +69,51 @@ class RecipeController extends Controller
             'title' => 'required|string|max:50',
             'description' => 'required|string|max:100',
             'instructions' => 'required|string',
-            'difficulty' => 'required|integer',
-            'prep_time' => 'required|integer',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'difficulty' => 'required|string',
+            'prep_time' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'allergens' => 'nullable|array',
         ]);
 
-        $userId = Auth::user()->id;
         $allergens = $request->input('allergens');
 
-        $difficultyEnum = ['beginner', 'novice', 'medium', 'hard', 'expert'];
-        $difficulty = $difficultyEnum[$validatedData['difficultyIndex'] - 1];
+        if (strcmp($validatedData['prep_time'], "60") == 0){
+            // if its 60 then add "+ min"
+            $prepTime = $validatedData['prep_time']."+ min";
+        }
+        else $prepTime = $validatedData['prep_time']." min"; //else just add " min"
 
-        $prepTimeEnum = ['5-15 min', '15-30 min', '30-45 min', '45-60 min', '60+ min'];
-        $prepTime = $prepTimeEnum[$validatedData['prepTimeIndex'] - 1];
-        
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = uniqid('recipe_') . '.' . 'png';
-            $image->storeAs('public/storage/userimages', $filename);
+            $image->storeAs('public/', $filename);
         } else {
             $filename = null;
         }
 
         $recipe = new Recipe;
-        $recipe->user_id = $userId;
+        $recipe->user_id = Auth::user()->id;
         $recipe->title = $validatedData['title'];
         $recipe->description = $validatedData['description'];
         $recipe->instructions = $validatedData['instructions'];
-        $recipe->difficulty = $difficulty;
+        $recipe->difficulty = $validatedData['difficulty'];
         $recipe->prep_time = $prepTime;
-        $recipe->image = $filename;
+        $recipe->filename = $filename;
 
         $recipe->save();
 
-
         if ($allergens) {
-            $recipe->allergens()->attach($allergens);
+            foreach ($allergens as $allergenName) {
+                // retrieve ID of allergen
+                $allergen = Allergen::where('name', $allergenName)->first();
+                if ($allergen) {
+                    // if exists, attach it
+                    $recipe->allergens()->attach($allergen->id);
+                }
+            }
         }
 
-        //  return redirect()->back()->with('success', 'Recipe submitted successfully!');
+        return redirect('/recipes')->with('success', 'Recipe submitted successfully!');
     }
 
 

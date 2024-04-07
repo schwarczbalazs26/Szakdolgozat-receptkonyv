@@ -6,7 +6,7 @@
                 <h1 class="text-3xl font-bold mb-4 text-center">{{ strtoupper($recipe->title) }}</h1>
 
                 <div class="mb-6">
-                    <img src="{{ asset('storage/' . $recipe->id . '.png') }}" alt="{{ $recipe->title }}"
+                    <img src="{{ asset('storage/' . $recipe->filename) }}" alt="{{ $recipe->title }}"
                         class="w-full max-w-full h-auto mb-4" style="width: 600px; height: 400px;">
 
                     <div class="border-t border-b border-gray-300 rounded-lg p-4 recipe-details text-white"
