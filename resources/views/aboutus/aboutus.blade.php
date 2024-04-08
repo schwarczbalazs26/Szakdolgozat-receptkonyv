@@ -11,7 +11,7 @@
                                 skills to new heights.</p>
                         </div>
                         <div class="image">
-                            <img src="https://placehold.co/550x400" alt="Placeholder Image">
+                            <img src="storage/aboutus1.jpg" alt="Our Chef Hard at Work">
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                             </p>
                         </div>
                         <div class="image">
-                            <img src="https://placehold.co/550x400" alt="Placeholder Image">
+                            <img src="storage/aboutus2.jpg" alt="The Team">
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                 one recipe at a time.</p>
                         </div>
                         <div class="image">
-                            <img src="https://placehold.co/550x400" alt="Placeholder Image">
+                            <img src="storage/app/public/aboutus1.jpg" alt="The Happy Costumers">
                         </div>
                     </div>
                 </div>

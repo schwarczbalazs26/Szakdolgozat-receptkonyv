@@ -1,2 +1,3 @@
 <?php
-header("Location:resources/views/index.blade.php");
+header("Location:public");
+exit;
