@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf

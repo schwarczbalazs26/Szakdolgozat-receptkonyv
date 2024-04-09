@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 <x-app-layout>
     <div class="flex justify-center">
         <div class="mt-8 p-8 border border-gray-300 rounded-lg bg-gray-100 text-white"

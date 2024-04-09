@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 <x-app-layout class="mb-6">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -11,7 +12,7 @@
                                 skills to new heights.</p>
                         </div>
                         <div class="image">
-                            <img src="storage/aboutus1.jpg" alt="Our Chef Hard at Work">
+                            <img src="{{ asset('storage/aboutus1.jpg') }}" alt="Our Chef Hard at Work">
                         </div>
                     </div>
                 </div>
@@ -27,7 +28,7 @@
                             </p>
                         </div>
                         <div class="image">
-                            <img src="storage/aboutus2.jpg" alt="The Team">
+                            <img src="{{ asset('storage/aboutus2.jpg') }}" alt="The Team">
                         </div>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
                                 one recipe at a time.</p>
                         </div>
                         <div class="image">
-                            <img src="storage/app/public/aboutus1.jpg" alt="The Happy Costumers">
+                            <img src="storage/aboutus3.jpg" alt="The Happy Costumers">
                         </div>
                     </div>
                 </div>
