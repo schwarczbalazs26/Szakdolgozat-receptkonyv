@@ -8,6 +8,8 @@ use App\Models\Allergen;
 use Illuminate\Support\Facades\Config;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Auth;
+use App\models\Ingredient;
+
 class RecipeController extends Controller
 {
 
@@ -24,11 +26,11 @@ class RecipeController extends Controller
 
     public function showUploadForm()
     {
-
+        $amounts = Config::get('enums.amount');
         $allergens = Allergen::all();
         $prep_time = Config::get('enums.prep_time');
         $difficulty = Config::get('enums.difficulty');
-        return view('recipeupload.recipeupload', compact('difficulty', 'allergens', 'prep_time'));
+        return view('recipeupload.recipeupload', compact('difficulty', 'allergens', 'prep_time', 'amounts'));
     }
 
     /**
@@ -73,15 +75,21 @@ class RecipeController extends Controller
             'prep_time' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'allergens' => 'nullable|array',
+            'ingredients' => 'required|array',
+            'ingredients.*' => 'string',
+            'quantities' => 'required|array',
+            'quantities.*' => 'numeric',
+            'amounts' => 'required|array',
+            'amounts.*' => 'string',
         ]);
-
+        $ingredients = $request->input('ingredients');
+        $amounts = $request->input('amounts');
         $allergens = $request->input('allergens');
 
-        if (strcmp($validatedData['prep_time'], "60") == 0){
+        if (strcmp($validatedData['prep_time'], "60") == 0) {
             // if its 60 then add "+ min"
-            $prepTime = $validatedData['prep_time']."+ min";
-        }
-        else $prepTime = $validatedData['prep_time']." min"; //else just add " min"
+            $prepTime = $validatedData['prep_time'] . "+ min";
+        } else $prepTime = $validatedData['prep_time'] . " min"; //else just add " min"
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -101,6 +109,25 @@ class RecipeController extends Controller
         $recipe->filename = $filename;
 
         $recipe->save();
+
+        $ingredients = $request->input('ingredients');
+
+        if ($ingredients) {
+            foreach ($validatedData['ingredients'] as $key => $ingredientName) {
+                $existingIngredient = Ingredient::where('name', $ingredientName)->first();
+                
+                if (!$existingIngredient) { //check if doesn't exist and then upload it
+                    $newIngredient = new Ingredient;
+                    $newIngredient->name = ucwords(strtolower($ingredientName));    //normalise the name for the database
+                    $newIngredient->save();
+                    $selectedAmountName = $amounts[$key];
+                    $recipe->ingredients()->attach($newIngredient->id, ['amount' => $selectedAmountName, 'quantity' => $validatedData['quantities'][$key]]);
+                } else {
+                    $selectedAmountName = $amounts[$key];   //if it exists just upload it
+                    $recipe->ingredients()->attach($existingIngredient->id, ['amount' => $selectedAmountName, 'quantity' => $validatedData['quantities'][$key]]);
+                }
+            }
+        }
 
         if ($allergens) {
             foreach ($allergens as $allergenName) {

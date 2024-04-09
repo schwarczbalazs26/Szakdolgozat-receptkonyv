@@ -47,6 +47,40 @@
                     </select>
                 </div>
 
+                <div class="mb-4">
+                    <label for="ingredients">Ingredients:</label>
+                    <table id="ingredients_table" class="w-full">
+                        <thead>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th>Quantity</th>
+                                <th>VoM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" name="ingredients[]"
+                                        class="w-full py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
+                                </td>
+                                <td>
+                                    <input type="text" name="quantities[]"
+                                        class="w-full text-right py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
+                                </td>
+                                <td>
+                                    <select name="amounts[]"
+                                        class="w-full py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
+                                        @foreach ($amounts as $index => $amount)
+                                            <option value="{{ $index }}">{{ $amount }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" id="addIngredientBtn" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:bg-blue-600">Add New Ingredient</button>
+                </div>
+
 
                 <div class="mb-4">
                     <label for="allergens">Allergens:</label><br>
@@ -66,9 +100,10 @@
                         class="w-full py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
                 </div>
 
-                <button type="submit"  id="submitBtn"
+                <button type="submit" id="submitBtn"
                     class="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:bg-blue-600">Submit</button>
             </form>
         </div>
     </div>
+    <script src="{{ asset('ingredientbutton.js') }}"></script>
 </x-app-layout>

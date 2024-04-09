@@ -13,4 +13,22 @@ return [
         '30-45' => '30-45 min',
         '60' => '60+ min',
     ],
+
+    'amount' => [
+        'teaspoon' => 'teaspoon',
+        'tablespoon' => 'tablespoon',
+        'cup' => 'cup',
+        'pint' => 'pint',
+        'quart' => 'quart',
+        'gallon' => 'gallon',
+        'ounce' => 'ounce',
+        'fluid ounce' => 'fluid ounce',
+        'pound' => 'pound',
+        'ml' => 'ml',
+        'dl' => 'dl',
+        'l' => 'l',
+        'g' => 'g',
+        'dkg' => 'dkg',
+        'kg' => 'kg'
+    ]
 ];
