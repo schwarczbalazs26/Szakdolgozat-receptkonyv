@@ -28,7 +28,8 @@
                 <h2 class="text-2xl font-bold mb-2 mt-6">Ingredients</h2>
                 <ul class="list-disc ml-6 mb-6">
                     @foreach ($recipe->ingredients as $ingredient)
-                        <li>{{ $ingredient->name }} - {{ $ingredient->pivot->quantity }} {{ $ingredient->pivot->amount }}
+                        <li>{{ $ingredient->name }} - {{ $ingredient->pivot->quantity }}
+                            {{ $ingredient->pivot->amount }}
                         </li>
                     @endforeach
                 </ul>
@@ -57,6 +58,24 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="max-w-xl mx-auto border border-gray-300 p-4 mb-4 rounded-lg">
+        <form method="post" action="{{ route('comments.store') }}" class="mb-4">
+            @csrf
+            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+            <input type="text" name="comment" placeholder="Enter your comment"
+                class="w-full p-2 border border-gray-300 rounded-md mb-2 h-12">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
+        </form>
+
+        @foreach ($comments as $comment)
+            <div class="bg-gray-200 rounded-lg p-4 mb-4">
+                <p class="text-sm text-gray-600"><strong>{{ $comment->user->name }}</strong> -
+                    {{ $comment->created_at->format('Y-m-d') }}</p>
+                <p class="text-gray-800">{{ $comment->comment }}</p>
+            </div>
+        @endforeach
+
     </div>
 </x-app-layout>
 <script src="{{ asset('allergens.js') }}"></script>

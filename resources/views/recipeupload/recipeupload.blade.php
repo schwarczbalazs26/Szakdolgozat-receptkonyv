@@ -78,7 +78,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button type="button" id="addIngredientBtn" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:bg-blue-600">Add New Ingredient</button>
+                    <button type="button" id="addIngredientBtn"
+                        class="mt-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:bg-blue-600">Add
+                        New Ingredient</button>
                 </div>
 
 

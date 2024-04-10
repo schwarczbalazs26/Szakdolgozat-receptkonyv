@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use App\models\Ingredient;
+use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
 {
@@ -115,7 +116,7 @@ class RecipeController extends Controller
         if ($ingredients) {
             foreach ($validatedData['ingredients'] as $key => $ingredientName) {
                 $existingIngredient = Ingredient::where('name', $ingredientName)->first();
-                
+
                 if (!$existingIngredient) { //check if doesn't exist and then upload it
                     $newIngredient = new Ingredient;
                     $newIngredient->name = ucwords(strtolower($ingredientName));    //normalise the name for the database
@@ -184,22 +185,33 @@ class RecipeController extends Controller
     {
         $allergens = Allergen::all();
         $difficulties = Config::get('enums.difficulty');
-
         $selectedAllergens = $request->input('allergens', []);
         $selectedDifficulties = $request->input('difficulties', []);
 
         $recipesQuery = Recipe::query();
 
-        $recipesQuery = $recipesQuery->when(count($selectedAllergens) > 0, function ($query) use ($selectedAllergens) {
-            $query->whereHas('allergens', function ($q) use ($selectedAllergens) {
-                $q->whereIn('id', $selectedAllergens);
+        if (count($selectedAllergens) > 0 && count($selectedDifficulties) > 0) {
+            $recipesQuery->whereExists(function ($query) use ($selectedAllergens) {
+                $query->select(DB::raw(1))
+                    ->from('recipe_allergen_table')
+                    ->join('allergens', 'allergens.id', '=', 'recipe_allergen_table.allergen_id')
+                    ->whereColumn('recipes.id', 'recipe_allergen_table.recipe_id')
+                    ->whereIn('allergens.id', $selectedAllergens);
+            })->whereIn('difficulty', $selectedDifficulties);
+        } elseif (count($selectedAllergens) == 0 && count($selectedDifficulties) == 0) {
+            //  no allergens or difficulties added
+        } elseif (count($selectedAllergens) > 0 && count($selectedDifficulties) == 0) {
+            $recipesQuery->whereExists(function ($query) use ($selectedAllergens) {
+                $query->select(DB::raw(1))
+                    ->from('recipe_allergen_table')
+                    ->whereColumn('recipes.id', 'recipe_allergen_table.recipe_id')
+                    ->whereIn('recipe_allergen_table.allergen_id', $selectedAllergens);
             });
-        })
-            ->when(count($selectedDifficulties) > 0, function ($query) use ($selectedDifficulties) {
-                $query->whereIn('difficulty', $selectedDifficulties);
-            });
+        } elseif (count($selectedAllergens) == 0 && count($selectedDifficulties) > 0) {
+            $recipesQuery->whereIn('difficulty', $selectedDifficulties);
+        }
 
-        $recipes = $recipesQuery->orderBy('id', 'desc')->paginate(9);
+        $recipes = $recipesQuery->orderBy('recipes.id', 'desc')->paginate(9);
 
         return view('recipes.index', [
             'recipes' => $recipes,

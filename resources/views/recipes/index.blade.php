@@ -2,9 +2,8 @@
 <x-app-layout>
     <br>
     <div class="flex justify-center mr-5">
-        <div class="max-w-md overflow-hidden rounded-lg border border-gray-200 shadow-lg text-gray-700"
-            style="max-height: 845px;">
-            <form id="filterForm" action="{{ route('recipes.index') }}" method="GET"
+        <div class="max-w-md overflow-hidden rounded-lg border-gray-200 shadow-lg text-gray-700">
+            {{--    <form id="filterForm" action="{{ route('recipes.index') }}" method="GET"
                 class="flex flex-col border-t border-gray-200 lg:border-t-0">
                 <fieldset class="w-full">
                     <legend class="block w-full bg-gray-50 px-5 py-3 text-xs font-medium text-white"
@@ -14,9 +13,9 @@
                     <div class="space-y-2 px-5 py-6">
                         @foreach ($allergens as $allergen)
                             <div class="flex items-center">
-                                <input id="{{ $allergen->name }}" type="checkbox" name="allergens[]"
+                                <input id="allergen_{{ $allergen->id }}" type="checkbox" name="allergens[]"
                                     value="{{ $allergen->id }}" class="h-5 w-5 rounded border-gray-300" checked />
-                                <label for="{{ $allergen->name }}" class="ml-3 text-base font-medium text-white"
+                                <label for="allergen_{{ $allergen->id }}" class="ml-3 text-base font-medium text-white"
                                     style="font-family: 'Roboto', sans-serif; text-align: center; text-transform: uppercase;">{{ $allergen->name }}</label>
                             </div>
                         @endforeach
@@ -48,6 +47,7 @@
                         Filters</button>
                 </div>
             </form>
+             --}}
         </div>
         <div class="container px-4 ml-1 flex-grow ml-5">
             <div class="grid grid-cols-3 gap-8 mt-2" style="margin-top: 0;">
@@ -81,5 +81,4 @@
         {!! $recipes->links() !!}
     </div>
     <script src="{{ asset('pagination.js') }}"></script>
-    <script src="{{ asset('filtering.js') }}"></script>
 </x-app-layout>
