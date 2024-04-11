@@ -52,24 +52,24 @@
                     <table id="ingredients_table" class="w-full">
                         <thead>
                             <tr>
-                                <th>Ingredient</th>
-                                <th>Quantity</th>
-                                <th>VoM</th>
+                                <th class="text-white">Ingredient</th>
+                                <th class="text-white">Quantity</th>
+                                <th class="text-white">VoM</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
                                     <input type="text" name="ingredients[]"
-                                        class="w-full py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
+                                        class="w-full text-white py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
                                 </td>
                                 <td>
                                     <input type="text" name="quantities[]"
-                                        class="w-full text-right py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
+                                        class="w-full text-right text-white py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
                                 </td>
                                 <td>
                                     <select name="amounts[]"
-                                        class="w-full py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
+                                        class="w-full text-white py-2 px-3 bg-gray-800 rounded-lg shadow-sm border border-gray-600 focus:outline-none focus:border-gray-500">
                                         @foreach ($amounts as $index => $amount)
                                             <option value="{{ $index }}">{{ $amount }}</option>
                                         @endforeach

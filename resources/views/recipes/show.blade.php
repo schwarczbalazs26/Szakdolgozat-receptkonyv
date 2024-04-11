@@ -59,7 +59,8 @@
             </div>
         </div>
     </div>
-    <div class="max-w-xl mx-auto border border-gray-300 p-4 mb-4 rounded-lg">
+    
+    <div class="max-w-  xl mx-auto border border-gray-300 p-4 rounded-lg">
         <form method="post" action="{{ route('comments.store') }}" class="mb-4">
             @csrf
             <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
@@ -68,13 +69,15 @@
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
         </form>
 
-        @foreach ($comments as $comment)
+        @forelse ($recipe->comments->reverse() as $comment)
             <div class="bg-gray-200 rounded-lg p-4 mb-4">
                 <p class="text-sm text-gray-600"><strong>{{ $comment->user->name }}</strong> -
-                    {{ $comment->created_at->format('Y-m-d') }}</p>
+                    {{ $comment->created_at->format('Y-m-d H:i') }}</p>
                 <p class="text-gray-800">{{ $comment->comment }}</p>
             </div>
-        @endforeach
+        @empty
+            <p class="text-white">No comments yet.</p>
+        @endforelse
 
     </div>
 </x-app-layout>
