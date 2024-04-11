@@ -60,7 +60,7 @@
         </div>
     </div>
     
-    <div class="max-w-  xl mx-auto border border-gray-300 p-4 rounded-lg">
+    <div class="max-w-xl mx-auto border border-gray-300 p-4 rounded-lg">
         <form method="post" action="{{ route('comments.store') }}" class="mb-4">
             @csrf
             <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
