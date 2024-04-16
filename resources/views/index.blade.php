@@ -1,13 +1,6 @@
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 <x-app-layout>
     <br>
-
-    <div class="search-container flex justify-center mb-6">
-        <input type="text" id="searchInput" placeholder="Search recipes..." class="w-64 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 bg-blue-900 text-white placeholder-gray-400">
-        <div id="searchDropdown" class="mt-1 rounded-md bg-white shadow-lg hidden">
-        </div>
-    </div>
-    
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-3 gap-8" id="recipeContainer">
             @foreach($randomRecipes as $recipe)
