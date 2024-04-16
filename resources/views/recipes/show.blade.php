@@ -67,16 +67,17 @@
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
         </form>
 
-        @forelse ($recipe->comments->reverse() as $comment)
-            <div class="bg-gray-200 rounded-lg p-4 mb-4">
-                <p class="text-sm text-gray-600"><strong>{{ $comment->user->name }}</strong> -
-                    {{ $comment->created_at->format('Y-m-d H:i') }}</p>
-                <p class="text-gray-800">{{ $comment->comment }}</p>
-            </div>
-        @empty
-            <p class="text-white">No comments yet.</p>
-        @endforelse
-
+        @if ($recipe->comments->isEmpty())
+            <p class="text-gray-400">Be the first to comment!</p>
+        @else
+            @foreach ($recipe->comments as $comment)
+                <div class="bg-gray-200 rounded-lg p-4 mb-4">
+                    <p class="text-sm text-gray-600"><strong>{{ $comment->user->name }}</strong> -
+                        {{ $comment->created_at->format('Y-m-d') }}</p>
+                    <p class="text-gray-800">{{ $comment->comment }}</p>
+                </div>
+            @endforeach
+        @endif
     </div>
 </x-app-layout>
 <script src="{{ asset('allergens.js') }}"></script>
