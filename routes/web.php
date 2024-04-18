@@ -9,12 +9,21 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('index');
 Route::get('/aboutus', 'App\Http\Controllers\HomeController@aboutus')->name('aboutus');
 Route::get('/recipes', 'App\Http\Controllers\RecipeController@index')->name('recipes.index');
 Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('recipe.show');
-Route::get('/search', [RecipeController::class, 'search']);
+Route::get('/search', 'RecipeController@search')->name('search');
 Route::post('/search', [RecipeController::class, 'search']);
 Route::post('/recipes', [RecipeController::class, 'filterRecipes'])->name('recipes.filter');
 Route::get('/recipeupload/recipeupload', [RecipeController::class, 'showUploadForm'])->name('recipeupload.index')->middleware('auth');
 Route::post('/recipeupload/recipeupload', [RecipeController::class, 'store'])->name('recipes.store')->middleware('auth');
 Route::post('/comments', [CommentsController::class,'store'])->name('comments.store');
+Route::get('storage/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('filename', '.*')->name('image');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
